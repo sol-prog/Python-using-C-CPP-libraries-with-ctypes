@@ -30,7 +30,7 @@ typedef struct {
 
 EXPORT_SYMBOL CBMP *BMP_read(const char *fname);
 EXPORT_SYMBOL CBMP *BMP_create(int32_t width, int32_t height, bool has_alpha);
-EXPORT_SYMBOL void BMP_destroy(CBMP *cbmp);
+EXPORT_SYMBOL void BMP_destroy(CBMP **cbmp);
 
 EXPORT_SYMBOL void BMP_write(CBMP *cbmp, const char *fname);
 EXPORT_SYMBOL uint8_t *BMP_pixels(CBMP *cbmp);

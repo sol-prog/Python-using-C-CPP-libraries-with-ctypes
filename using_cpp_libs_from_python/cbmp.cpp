@@ -56,14 +56,15 @@ try {
     std::exit(1);
 }
 
-void BMP_destroy(CBMP *cbmp)
+void BMP_destroy(CBMP **cbmp)
 try {
-    if(cbmp && cbmp->handle) {
-        BMP *bmp = (BMP *)cbmp->handle;
+    if(*cbmp != nullptr && (*cbmp)->handle != nullptr) {
+        BMP *bmp = (BMP *)(*cbmp)->handle;
         delete bmp;
-        delete cbmp;
+        delete (*cbmp);
+        *cbmp = nullptr;
     } else {
-        ON_ERROR_EXIT(-1, "");
+        ON_ERROR_EXIT(-1, "You are trying to deallocate an already deallocated object");
     }
 } catch(const std::exception &e) {
     std::cerr << "Error in function: " << __func__ << " at line: " << __LINE__ << '\n';
@@ -77,7 +78,7 @@ try {
         BMP *bmp = (BMP *)cbmp->handle;
         bmp->write(fname);
     } else {
-        ON_ERROR_EXIT(-1, "");
+        ON_ERROR_EXIT(-1, "You are trying to use a non allocated object");
     }
 } catch(const std::exception &e) {
     std::cerr << "Error in function: " << __func__ << " at line: " << __LINE__ << '\n';
@@ -91,7 +92,7 @@ try {
     if(cbmp && cbmp->handle) {
         bmp = (BMP *)cbmp->handle;
     } else {
-        ON_ERROR_EXIT(-1, "");
+        ON_ERROR_EXIT(-1, "You are trying to use a non allocated object");
     }
 
     return bmp->data.data();
@@ -107,7 +108,7 @@ try {
         BMP *bmp = (BMP *)cbmp->handle;
         bmp->fill_region(x0, y0, w, h, B, G, R, A);
     } else {
-        ON_ERROR_EXIT(-1, "");
+        ON_ERROR_EXIT(-1, "You are trying to use a non allocated object");
     }
 } catch(const std::exception &e) {
     std::cerr << "Error in function: " << __func__ << " at line: " << __LINE__ << '\n';

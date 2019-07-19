@@ -33,7 +33,7 @@ BMP_create.argtypes = [ctypes.c_int32, ctypes.c_int32, ctypes.c_bool]
 BMP_create.restype = ctypes.POINTER(CBMP)
 
 BMP_destroy = cbmp.BMP_destroy
-BMP_destroy.argtypes = [ctypes.POINTER(CBMP)]
+BMP_destroy.argtypes = [ctypes.POINTER(ctypes.POINTER(CBMP))]
 BMP_destroy.restype = None
 
 BMP_write = cbmp.BMP_write

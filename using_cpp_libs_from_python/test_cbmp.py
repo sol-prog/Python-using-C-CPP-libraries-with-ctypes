@@ -6,7 +6,7 @@ img = cbmp.BMP_read(b"../cpp-bmp-images/Shapes.bmp")
 cbmp.BMP_fill_region(img, 0, 0, 100, 200, 0, 0, 255, 255)
 cbmp.BMP_fill_region(img, 150, 0, 209, 203, 0, 255, 0, 255)
 cbmp.BMP_write(img, b"Shapes_copy.bmp")
-cbmp.BMP_destroy(img)
+cbmp.BMP_destroy(ctypes.byref(img))
 
 # Read an RGB BMP image, draw two rectangles on it, save it and release the object
 img = cbmp.BMP_read(b"../cpp-bmp-images/Shapes_24.bmp")
