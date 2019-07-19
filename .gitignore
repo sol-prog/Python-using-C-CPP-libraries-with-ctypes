@@ -6,4 +6,5 @@
 *.o
 *.obj
 __pycache__/
+using_cpp_libs_from_python/*.bmp
 
